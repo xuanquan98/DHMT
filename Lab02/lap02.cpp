@@ -1,5 +1,3 @@
-#include <windows.h>
-
 /* -- INCLUDE FILES ------------------------------------------------------ */
 #include <windows.h>
 #include <GL/GL.h>
@@ -27,20 +25,37 @@ void spinDisplay(void)
     glutPostRedisplay();
 }
 
-void mouse(int button, int state, int x, int y) 
+/*void mouse(int button, int state, int x, int y) 
 {
     switch (button) {
     case GLUT_LEFT_BUTTON:
-    if (state == GLUT_DOWN)
-    glutIdleFunc(spinDisplay);
+    if (state == GLUT_DOWN){
+    	glutIdleFunc(spinDisplay);
+	}
+    
     break;
-    case GLUT_MIDDLE_BUTTON:
+    case GLUT_RIGHT_BUTTON:
     if (state == GLUT_DOWN)
     glutIdleFunc(NULL);
     break;
     default:
     break;
     }
+}*/
+
+int n=0;
+void mouse(int button, int state, int x, int y) 
+{
+	
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && n%2==0){
+    	n++;
+    	glutIdleFunc(spinDisplay);
+	} else if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && n%2!=0){
+		n++;
+    	glutIdleFunc(NULL);
+    }
+		
+    
 }
 
 void RendenScene()  {
